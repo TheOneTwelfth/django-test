@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+      context: .
+      target: dev
+    image: django-test-dev
+    command: poetry run ./run.sh
+    volumes:
+      - "./:/usr/src/app"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    restart: unless-stopped
+    environment: 
+      DB_NAME: django_test
+      DB_USER: dev
+      DB_PASSWORD: devpass
+      DB_HOST: db
+  db:
+    image: postgres
+    volumes:
+      - "db_data:/var/lib/postgresql"
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: devpass
+      POSTGRES_DB: django_test
+
+volumes:
+  db_data: null

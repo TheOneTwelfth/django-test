@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "django-test"
+version = "1.0"
+description = ""
+authors = []
+
+[tool.poetry.dependencies]
+python = "~3.7"
+
+django = "^2.2.7"
+djangorestframework = "*"
+psycopg2-binary = "*"
+
+[tool.poetry.dev-dependencies]
+pytest = "*"
